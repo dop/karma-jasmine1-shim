@@ -1,0 +1,19 @@
+* Usage
+Add =jasmine1-shim= to =karma.conf.js=
+
+#+begin_src javascript
+module.exports = function(config) {
+  config.set({
+    // ...
+
+    // Optional as "plugins" is populated automatically.
+    plugins: [
+      'karma-jasmine',
+      'karma-jasmine1-shim'
+    ],
+    frameworks: ['jasmine', 'jasmine1-shim'],
+
+    // ...
+  });
+};
+#+end_src
