@@ -34,14 +34,14 @@ module.exports = function(config) {
 
 * Tips on migration
 
-Start by adding shim to your frameworks list of Karma’s configuration. Your test
-should pass in most of the cases. You should see a list of messages indicating
-old methods and properties you are using that are no longer available in new
-Jasmine version.
+Start by adding shim to your frameworks list of Karma’s configuration. Your
+tests should pass in most of the cases. You will see a list of messages
+indicating old methods and properties being used that are no longer available in
+new Jasmine version.
 
-You could fix them by hand if you don’t have too many tests. Otherwise, =sed=
-might be of some help. Following are shell commands that might help with
-migration. Run them in appropriate directory, like =test/spec/=.
+You could fix them by hand if you have just a few tests. Otherwise, =sed= will
+help. Following are shell commands that will automate migration. Run them in
+appropriate directory, like =test/spec/=.
 
 First, the easy targets:
 
@@ -59,7 +59,7 @@ find . -name '*.js' \
 
 #+END_SRC
 
-Your tests should still pass, or at least, failing test number should not
+Your tests should still pass, or at least, failing tests count should not
 increase.
 
 Above will replace the most obvious methods and properties of spies. Next on the
