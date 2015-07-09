@@ -5,6 +5,8 @@ of old tests to pass. It prints deprecation warnings at the end of test run.
 There are breaking changes, though, which cannot be shimed:
 - Clock needs to be removed after usage with =jasmine.clock.uninstall()=.
 - =runs()= and =waitsFor()= are gone, replaced by =done= callback.
+- =toEqual()= matcher now checks for key existance, i.e. =expect({ a: undefined
+  }).toEqual({})= will fail in Jasmine 2.
 
 See how to migrate here: http://jasmine.github.io/2.3/upgrading.html
 
