@@ -1,3 +1,13 @@
+* About
+This is a karma plugin (framework) which extends jasmine version 2 to allow some
+of old tests to pass. It prints deprecation warnings at the end of test run.
+
+There are breaking changes, though, which cannot be shimed:
+- Clock needs to be removed after usage with =jasmine.clock.uninstall()=.
+- =runs()= and =waitsFor()= are gone, replaced by =done= callback.
+
+See how to migrate here: http://jasmine.github.io/2.3/upgrading.html
+
 * Usage
 Add =jasmine1-shim= to =karma.conf.js=
 
