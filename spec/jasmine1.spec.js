@@ -559,4 +559,12 @@ describe('Asynchronous specs', function () {
     });
   });
 
+  it('should shim andThrow method', function () {
+    var dog = {bark: function () {}};
+    spyOn(dog, 'bark').andThrow('I am a cat!');
+    expect(function () {
+      dog.bark();
+    }).toThrow(new Error('I am a cat!'));
+  });
+
 });
