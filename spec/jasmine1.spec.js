@@ -567,4 +567,18 @@ describe('Asynchronous specs', function () {
     }).toThrow(new Error('I am a cat!'));
   });
 
+  describe('should expose this.addMatchers', function () {
+    var addMatchersOnThis;
+
+    beforeEach(function () {
+      addMatchersOnThis = this.addMatchers;
+    });
+
+    it('in beforeEach scope', function () {
+      expect(typeof addMatchersOnThis).toBe('function');
+      expect(addMatchersOnThis !== jasmine.addMatchers).toBe(true);
+    });
+
+  });
+
 });
