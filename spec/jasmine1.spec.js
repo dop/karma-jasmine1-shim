@@ -497,3 +497,66 @@ describe('Manually ticking the Jasmine Mock Clock', function() {
     expect(timerCallback.callCount).toEqual(2);
   });
 });
+
+describe('Asynchronous specs', function () {
+
+  it('should not fail when using new asynchronous API', function (done) {
+    setTimeout(done, 400);
+  }, 500);
+
+  it('should shim runs method', function () {
+      var flag = false;
+
+      runs(function () {
+        flag = true;
+      });
+
+      runs(function () {
+        expect(flag).toBe(true);
+      });
+
+      expect(flag).toBe(false);
+  });
+
+  it('should shim waits method', function () {
+    var flag = false;
+    runs(function () {
+      setTimeout(function () {
+        flag = true;
+      }, 100);
+    });
+
+    runs(function () {
+      expect(flag).toBe(false);
+    });
+
+    waits(100);
+
+    runs(function () {
+      expect(flag).toBe(true);
+    });
+
+    expect(flag).toBe(false);
+  });
+
+  it('should shim waitsFor method', function () {
+    var flag = false;
+    runs(function () {
+      setTimeout(function () {
+        flag = true;
+      }, 300);
+    });
+
+    var checkCount = 0;
+    waitsFor(function () {
+      checkCount++;
+      return flag;
+    }, 'Custom error message', 400);
+
+    runs(function () {
+      expect(flag).toBe(true);
+      expect(checkCount).toBeGreaterThan(0);
+    });
+  });
+
+});
