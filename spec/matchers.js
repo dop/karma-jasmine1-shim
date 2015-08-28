@@ -24,10 +24,16 @@ xdescribe('Old Matchers', function () {
           ];
         };
         return this.actual === 'other';
+      },
+      toBePositionedAt: function(top, left) {
+        this.message = function() {
+          return 'Expected "('  + this.actual.top + ', ' + this.actual.left +  ')" to be positioned at (' + top + ', ' + left + ')';
+        };
+        return this.actual.top === top && this.actual.left === left;
       }
     };
 
-    jasmine.addMatchers(matchers);
+    this.addMatchers(matchers);
   });
 
   it('should migrate simple matcher without custom message', function () {
@@ -40,5 +46,9 @@ xdescribe('Old Matchers', function () {
 
   it('should handle custom message returning array', function () {
     expect('this').toBeOther();
+  });
+
+  it('should handle matcher arguments', function () {
+    expect({ top: 10, left: 20 }).toBePositionedAt(10, 20);
   });
 });
