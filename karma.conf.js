@@ -1,4 +1,4 @@
-module.exports = function(config) {
+module.exports = function (config) {
   config.set({
     plugins: [
       'karma-jasmine',
@@ -8,6 +8,7 @@ module.exports = function(config) {
     basePath: '',
     frameworks: ['jasmine', 'jasmine1-shim'],
     files: [
+      'node_modules/es5-shim/es5-shim.js',
       'spec/*.js'
     ],
     exclude: [],

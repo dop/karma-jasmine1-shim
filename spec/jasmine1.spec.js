@@ -254,6 +254,14 @@ describe('A spy', function () {
     expect(foo.setBar.calls.length).toEqual(2);
   });
 
+  it('allows to pop calls from array', function () {
+    expect(foo.setBar.calls.pop().args[0]).toEqual(456);
+  });
+
+  it('allows to shift calls from array', function () {
+    expect(foo.setBar.calls.shift().args[0]).toEqual(123);
+  });
+
   it('tracks all the arguments of its calls', function () {
     expect(foo.setBar).toHaveBeenCalledWith(123);
     expect(foo.setBar).toHaveBeenCalledWith(456, 'another param');
