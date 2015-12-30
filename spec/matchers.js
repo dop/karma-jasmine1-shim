@@ -25,8 +25,8 @@ xdescribe('Old Matchers', function () {
         };
         return this.actual === 'other';
       },
-      toBePositionedAt: function(top, left) {
-        this.message = function() {
+      toBePositionedAt: function (top, left) {
+        this.message = function () {
           return 'Expected "('  + this.actual.top + ', ' + this.actual.left +  ')" to be positioned at (' + top + ', ' + left + ')';
         };
         return this.actual.top === top && this.actual.left === left;
