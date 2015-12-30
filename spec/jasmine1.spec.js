@@ -592,4 +592,8 @@ describe('Asynchronous specs', function () {
   it('should expose currentSpec', function () {
     expect(jasmine.getEnv().currentSpec).toBe(this);
   });
+
+  it ('should support old objectContaining api', function () {
+    expect(jasmine.objectContaining({a: 1}).jasmineMatches({a: 1, b: 2})).toBe(true);
+  });
 });
