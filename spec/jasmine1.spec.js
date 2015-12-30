@@ -589,4 +589,7 @@ describe('Asynchronous specs', function () {
 
   });
 
+  it('should expose currentSpec', function () {
+    expect(jasmine.getEnv().currentSpec).toBe(this);
+  });
 });
