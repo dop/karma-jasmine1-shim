@@ -262,6 +262,15 @@ describe('A spy', function () {
     expect(foo.setBar.calls.shift().args[0]).toEqual(123);
   });
 
+  it('allows to enumerating calls array', function () {
+    var calls = [];
+    foo.setBar.calls.forEach(function (value) {
+      calls.push(value);
+    });
+    expect(calls).toEqual([jasmine.objectContaining({args: [123]}),
+                           jasmine.objectContaining({args: [456, 'another param']})]);
+  });
+
   it('tracks all the arguments of its calls', function () {
     expect(foo.setBar).toHaveBeenCalledWith(123);
     expect(foo.setBar).toHaveBeenCalledWith(456, 'another param');
