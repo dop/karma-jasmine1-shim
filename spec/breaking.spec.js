@@ -6,3 +6,11 @@ describe('Jasmine Mock clock', function () {
   });
 
 });
+
+describe('Object equality', function () {
+
+  it('should not ignore undefined keys', function () {
+    expect({ a: undefined }).not.toEqual({});
+  });
+
+});

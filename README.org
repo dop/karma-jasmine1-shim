@@ -1,10 +1,10 @@
 * About
 This is a karma plugin (framework) which extends jasmine version 2 to allow some
-of old tests to pass. It prints deprecation warnings at the end of test run.
+of the old tests to pass. It prints deprecation warnings at the end of tests
+run.
 
 There are breaking changes, though, which cannot be shimed:
 - Clock needs to be removed after usage with =jasmine.clock.uninstall()=.
-- =runs()= and =waitsFor()= are gone, replaced by =done= callback.
 - Object equality assertion is stricter in Jasmine 2 regarding keys with
   =undefined= value. This means that =toEqual()=, =toHaveBeenCalledWith()=,
   similar matchers will fail in cases like =expect({}).toEqual({ a: undefined
@@ -33,7 +33,6 @@ module.exports = function(config) {
 #+end_src
 
 * Tips on migration
-
 Start by adding shim to your frameworks list of Karma’s configuration. Your
 tests should pass in most of the cases. You will see a list of messages
 indicating old methods and properties being used that are no longer available in
@@ -47,7 +46,7 @@ First, the easy targets:
 
 #+BEGIN_SRC sh
 find . -name '*.js' \
-    | xargs sed -i'' \
+    | xargs sed -i.bak \
             -e 's/\.mostRecentCall/.calls.mostRecent()/g' \
             -e 's/\.mostRecentCall/.calls.mostRecent()/g' \
             -e 's/\.callCount/.calls.count()/g' \
@@ -56,11 +55,9 @@ find . -name '*.js' \
             -e 's/\.argsForCall/.calls.allArgs()/g' \
             -e 's/\.calls\[0\]/.calls.first()/g' \
             -e 's/\.andCallFake(/.and.callFake(/g'
-
 #+END_SRC
 
-Your tests should still pass, or at least, failing tests count should not
-increase.
+Your tests should still pass. At least failing tests count should not increase.
 
 Above will replace the most obvious methods and properties of spies. Next on the
 list, are =.reset()= and =.calls= property. It would be presumptuous to treat
@@ -68,9 +65,11 @@ every occurrence as indication of spy, thus it’s recommended to run these
 individually and then carefully inspect diffs.
 
 #+BEGIN_EXAMPLE
-$ find . -name '*.js' | xargs sed -i'' -e 's/\.reset()/.calls.reset()/g'
-$ find . -name '*.js' | xargs sed -i'' -e 's/\.calls\([^\.]\)/.calls.all()\1/g'
+$ find . -name '*.js' | xargs sed -i.bak -e 's/\.reset()/.calls.reset()/g'
+$ find . -name '*.js' | xargs sed -i.bak -e 's/\.calls\([^\.]\)/.calls.all()\1/g'
 #+END_EXAMPLE
 
-And finally, you should migrate your custom matchers and asynchronous tests. For
-how to, see http://jasmine.github.io/2.3/upgrading.html
+And finally, you should migrate your custom matchers. For how to, see
+http://jasmine.github.io/2.3/upgrading.html
+
+If all seems fine at the end, you can remove backed up files =rm *.bak=.
