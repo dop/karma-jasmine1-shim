@@ -54,7 +54,8 @@ find . -name '*.js' \
             -e 's/\.andCallThrough()/.and.callThrough()/g' \
             -e 's/\.argsForCall/.calls.allArgs()/g' \
             -e 's/\.calls\[0\]/.calls.first()/g' \
-            -e 's/\.andCallFake(/.and.callFake(/g'
+            -e 's/\.andCallFake(/.and.callFake(/g' \
+            -e 's/\.andReturn(/.and.returnValue(/g'
 #+END_SRC
 
 Your tests should still pass. At least failing tests count should not increase.
