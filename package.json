@@ -1,7 +1,7 @@
 {
   "name": "karma-jasmine1-shim",
   "version": "1.0.1",
-  "description": "",
+  "description": "Shim for jasmine 1.3 tests to run on jasmine 2.",
   "main": "lib/index.js",
   "dependencies": {},
   "devDependencies": {
@@ -17,6 +17,10 @@
   "scripts": {
     "test": "karma start --single-run"
   },
-  "author": "",
+  "author": "Donatas Petrauskas <donatasp@wix.com>",
+  "contributors": [
+    "Mantas Miliukas <mantasm@wix.com>",
+    "Shahar Talmi <shahart@wix.com>"
+  ],
   "license": "MIT"
 }
